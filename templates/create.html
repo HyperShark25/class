@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Register a new student</title>
+</head>
+<body>
+	<fieldset>
+		<legend><strong><em>Create a Student</em></strong><legend>
+			<form method="post">
+				{% csrf_token %}
+				<label>First Name: <input type="text" name="First Name"></label>
+				<label>Last Name: <input type="text" name="Last Name"></label>
+				<label>Age: <input type="number" name="Age" min=7 max=22></label>
+				<label>Term: <input type="number" name="Term" min=1 max=8></label>
+				<label>GPA: <input type="text" name="GPA" min=0 max=4></label>
+				<button type="submit">Submit</button>
+			</form>
+	</fieldset>
+	<a href="{% url 'getapi' %}">Table Content</a>
+</body>
+</html>

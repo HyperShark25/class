@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Registration</title>
+	</head>
+	<body>
+		{% for message in messages %}
+			<h1>Warning: {{message}}</h1>
+		{% endfor %}
+		<fieldset>
+			<legend>Create Account</legend>
+			<form method="post">
+				{% csrf_token %}
+				<div>
+					<label>Email: <input type="email" name="Email" placeholder="Type your Email..." required></label>
+				</div>
+				<div>
+					<label>Username: <input type="text" name="Username" placeholder="Type your Username..." required></label>
+				</div>
+				<div>
+					<label>Date of birth: <input type="Date" name="Birthday" required></label>
+				</div>
+				<div>
+					<label>Password: <input type="password" name="Password" placeholder="Enter your Password..." required></label>
+				</div>
+					<label>Confirm Password: <input type="password" name="Confirm Password" placeholder="Repeat your Password..." required></label>
+				</div>
+				<div>
+					<label>Pin Number: <input type="password" name="Pin No" placeholder="Enter the Pin Number in case you are a manager"></label>
+				</div>
+				<div>
+					<button type="submit">Submit</button>
+				</div>
+			</form>
+		</fieldset>
+	</body>
+</html>

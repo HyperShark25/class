@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Students Table</title>
+	<style>
+		table, td, th {
+			border: 1px solid black;
+		}
+		h1 {
+			text-align: center;
+		}
+		table {
+			width: 100%;
+		}
+		a {
+			color: green;
+		}
+	</style>
+</head>
+<body>
+	<table>
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>First Name</th>
+				<th>Last Name</th>
+				<th>Age<t/h>
+				<th>Term</th>
+				<th>GPA</th>
+			</tr>
+		</thead>
+		{% for x in item %}
+		<tbody>
+			<tr>
+				<td>{{x.id}}</td>
+				<td>{{x.fn}}</td>
+				<td>{{x.ln}}</td>
+				<td>{{x.age}}</td>
+				<td>{{x.term}}</td>
+				<td>{{x.gpa}}</td>
+				<td><a href="{% url 'cs' pk=x.id %}">Edit</a></td>
+				<td><a href="{% url 'rst' pk=x.id %}">Remove</a></td>
+			</tr>
+		</tbody>
+		{% endfor %}
+	</table>
+	<form action="{% url 'sfun' %}" method="post">
+		{% csrf_token %}
+		<label>Search: <input type="text" name="Name" placeholder="First name or Last name"></label>
+		<input type="submit" value="Search">
+	</form>
+{% if messages %}
+<ul>
+	{% for message in messages %}
+		<li>{{ message }}</li>
+	{% endfor %}
+</ul>
+{% endif %}
+	<div>
+		<a href="{% url 'postapi' %}">Register a new student record through API</a></br>
+	</div>
+	<div>
+		<a href="{% url 'create' %}">Register a new student record</a>
+	</div>
+</body>
+</html>

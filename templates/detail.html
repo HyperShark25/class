@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>User details</title>
+</head>
+<body>
+	<fieldset>
+		<legend><strong><em>{{item.username}}</em></strong></legend>
+		<h1>ID: {{item.form_id}}</h1>
+		<p>Email: {{item.email}}</p>
+		<p>Birthday: {{item.date_of_birth}}</p>
+		{% if user.is_admin %}
+			<p>Status: Teacher</p>
+		{% else %}
+			<p>Status: Student</p>
+		{% endif %}
+	</fieldset>
+	<a href="{% url 'logout' %}">Logout</a>
+	<a href="{% url 'create' %}">Register Student</a>
+	<a href="{% url 'table' %}">Check your students</a>
+</body>
+</html>

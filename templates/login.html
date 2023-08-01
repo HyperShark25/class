@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Login Page</title>
+	</head>
+	<body>
+		{% for message in messages %}
+			<h1>Warning: {{message}}</h1>
+		{% endfor %}
+		<fieldset>
+			<legend>Login Account</legend>
+			<form method="post">
+				{% csrf_token %}
+				<div>
+					<label>Email: <input type="email" name="Email" placeholder="Type your Email..." required></label>
+				</div>
+				<div>
+					<label>Password: <input type="password" name="Password" placeholder="Enter your Password..." required></label>
+				</div>
+				<div>
+					<button type="submit">Submit</button>
+				</div>
+			</form>
+		</fieldset>
+	</body>
+</html>

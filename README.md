@@ -9,3 +9,7 @@ Requires django, djangorestframework and requests libraries.
 In order to register as a superuser you must enter the number 159 in the pin no bar to be accepted as a teacher.
 
 In case you want to register as a normal user you can leave the pin no bar blank and then you will be able to register as a normal user which would be student.
+
+To see the table content of the students you want to register, you must be logged in as an admin or a teacher.
+
+# Ongoing Project

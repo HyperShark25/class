@@ -1,0 +1,21 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Register Subject</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<style src="static/styles.css"></style>
+	<link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>
+<body>
+	<fieldset>
+		<legend>Input Subject</legend>
+		<form method="post">
+			{% csrf_token %}
+			{{form.as_p}}
+			<button type="submit">Submit</button>
+		</form>
+	</fieldset>
+</body>
+</html>

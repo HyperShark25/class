@@ -11,8 +11,8 @@
 		<p>Birthday: {{item.date_of_birth}}</p>
 		{% if user.is_admin %}
 			<p>Status: Teacher</p>
-	                <a href="{% url 'create' %}">Register Student</a>
-	                <a href="{% url 'table' %}">Check your students</a>
+			<a href="{% url 'create' %}">Register Student</a>
+			<a href="{% url 'table' %}">Check your students</a>
 		{% else %}
 			<p>Status: Student</p>
 		{% endif %}

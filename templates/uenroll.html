@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Update Enrollment</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+	<fieldset>
+		<legend><strong><em>Update Enrollment</em></strong></legend>
+			<form method="post">
+				{% csrf_token %}
+				<div>
+					<label>Subject:
+						<select name="Subject" multiple>
+						{% for subject in subjects %}
+							<option value="{{subject.id}}">{{subject.name}}</option>
+						{% endfor %}
+						</select>
+					</label>
+				</div>
+				<div>
+					<label>Student:
+						<select name="Student" multiple>
+						{% for student in students %}
+							<option value="{{student.id}}">{{student.name}}</option>
+						{% endfor %}
+						</select>
+					</label>
+				</div>
+				<div>
+					<label>Teacher:
+						<select name="Teacher" multiple>
+						{% for teacher in teachers %}
+							<option value="{{teacher.id}}">{{teacher.name}}</option>
+						{% endfor %}
+						</select>
+					</label>
+				</div>
+				<div>
+					<button type="submit">Submit</button>
+				</div>
+			</form>
+	</fieldset>
+	<a href="{% url 'table' %}">Table Content</a>
+</body>
+</html>

@@ -1,17 +1,38 @@
 from django.db import models
-from django.contrib.auth import get_user_model
-import random
 
-UM = get_user_model()
+
+class Subject(models.Model):
+    name = models.CharField(max_length=20)
+    description = models.TextField()
+    def __str__(self):
+        return self.name
+
 
 
 class Student(models.Model):
-    user = models.ForeignKey(UM, on_delete=models.CASCADE)
-    fn = models.CharField(max_length=9, verbose_name="First Name")
-    ln = models.CharField(max_length=8, verbose_name="Last Name")
-    age = models.PositiveIntegerField(null=True)
-    term = models.PositiveIntegerField(null=True)
-    gpa = models.FloatField(null=True)
+    name = models.CharField(max_length=20)
+    age = models.PositiveIntegerField()
+    address = models.CharField(max_length=256)
     
     def __str__(self):
-        return self.reg_no
+        return self.name
+
+
+
+class Teacher(models.Model):
+    name = models.CharField(max_length=20)
+    address = models.CharField(max_length=256)
+    phone = models.CharField(max_length=11)
+    
+    def __str__(self):
+        return self.name
+
+
+
+class Enrollment(models.Model):
+    subject = models.ManyToManyField(Subject)
+    student = models.ManyToManyField(Student)
+    teacher = models.ManyToManyField(Teacher)
+    
+    def __str__(self):
+        return str(self.teacher)

@@ -6,6 +6,9 @@
 		table, td, th {
 			border: 1px solid black;
 		}
+		td {
+			text-align: center;
+		}
 		h1 {
 			text-align: center;
 		}
@@ -15,52 +18,147 @@
 		a {
 			color: green;
 		}
+		.student {
+			margin-left: 520px;
+			padding-bottom: 10px;
+		}
 	</style>
 </head>
 <body>
+	{% if messages %}
+		<ul>
+		{% for message in messages %}
+			<h1>{{ message }}</h1>
+		{% endfor %}
+		</ul>
+	{% endif %}
+	<form action="{% url 'sfunst' %}" method="post">
+		{% csrf_token %}
+		<label>Search: <input type="text" name="Name" placeholder="Search for a student"></label>
+		<input type="submit" value="Search">
+	</form>
+	<div class="student">
+		<a href="{% url 'create' %}">Register a new student record</a>
+	</div>
 	<table>
 		<thead>
 			<tr>
 				<th>ID</th>
-				<th>First Name</th>
-				<th>Last Name</th>
+				<th>Name</th>
 				<th>Age<t/h>
-				<th>Term</th>
-				<th>GPA</th>
+				<th>Address</th>
 			</tr>
 		</thead>
-		{% for x in item %}
+		{% for x in context.student %}
 		<tbody>
 			<tr>
 				<td>{{x.id}}</td>
-				<td>{{x.fn}}</td>
-				<td>{{x.ln}}</td>
+				<td>{{x.name}}</td>
 				<td>{{x.age}}</td>
-				<td>{{x.term}}</td>
-				<td>{{x.gpa}}</td>
+				<td>{{x.address}}</td>
 				<td><a href="{% url 'cs' pk=x.id %}">Edit</a></td>
 				<td><a href="{% url 'rst' pk=x.id %}">Remove</a></td>
 			</tr>
 		</tbody>
 		{% endfor %}
 	</table>
-	<form action="{% url 'sfun' %}" method="post">
+		<form action="{% url 'sfunt' %}" method="post">
 		{% csrf_token %}
-		<label>Search: <input type="text" name="Name" placeholder="First name or Last name"></label>
+		<label>Search: <input type="text" name="TName" placeholder="Search for Teacher"></label>
 		<input type="submit" value="Search">
 	</form>
-{% if messages %}
-<ul>
-	{% for message in messages %}
-		<li>{{ message }}</li>
-	{% endfor %}
-</ul>
-{% endif %}
+	<div class="student">
+		<a href="{% url 'teacher' %}">Register a new Teacher record</a>
+	</div>
+	<table>
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>Name</th>
+				<th>Age<t/h>
+				<th>Phone Number</th>
+			</tr>
+		</thead>
+		{% for y in context.teacher %}
+		<tbody>
+			<tr>
+				<td>{{y.id}}</td>
+				<td>{{y.name}}</td>
+				<td>{{y.address}}</td>
+				<td>{{y.phone}}</td>
+				<td><a href="{% url 'ut' pk=y.id %}">Edit</a></td>
+				<td><a href="{% url 'rt' pk=y.id %}">Remove</a></td>
+			</tr>
+		</tbody>
+		{% endfor %}
+	</table>
+	<form action="{% url 'sfunsubj' %}" method="post">
+		{% csrf_token %}
+		<label>Search: <input type="text" name="SubjName" placeholder="Search for Subject"></label>
+		<input type="submit" value="Search">
+	</form>
+	<div class="student">
+		<a href="{% url 'subj' %}">Create a subject</a>
+	</div>
+	<table>
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>Name</th>
+				<th>Description<t/h>
+			</tr>
+		</thead>
+		{% for z in context.subject %}
+		<tbody>
+			<tr>
+				<td>{{z.id}}</td>
+				<td>{{z.name}}</td>
+				<td>{{z.description}}</td>
+				<td><a href="{% url 'us' pk=z.id %}">Edit</a></td>
+				<td><a href="{% url 'rsubj' pk=z.id %}">Remove</a></td>
+			</tr>
+		</tbody>
+		{% endfor %}
+	</table>
+	<div class="student">
+		<a href="{% url 'enroll' %}">Create an Enrollment data record</a>
+	</div>
+	<table>
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>Subject</th>
+				<th>Teacher<t/h>
+				<th>Student</th>
+			</tr>
+		</thead>
+		{% for j in context.enroll %}
+		<tbody>
+			<tr>
+				<td>{{j.id}}</td>
+				<td>
+				{% for subject in j.subjects %}
+					{{subject.name}}</br>
+				{% endfor %}
+				</td>
+				<td>
+				{% for teacher in j.teachers %}
+					{{teacher.name}}</br>
+				{% endfor %}
+				</td>
+				<td>
+				{% for student in j.students %}
+					{{student.name}}</br>
+				{% endfor %}
+				</td>
+				<td><a href="{% url 'uenroll' pk=j.id %}">Edit</a></td>
+				<td><a href="{% url 'renroll' pk=j.id %}">Remove</a></td>
+			</tr>
+		</tbody>
+		{% endfor %}
+	</table>
 	<div>
 		<a href="{% url 'postapi' %}">Register a new student record through API</a></br>
-	</div>
-	<div>
-		<a href="{% url 'create' %}">Register a new student record</a>
 	</div>
 	<div>
 		<a href="{% url 'logout' %}">Logout</a>

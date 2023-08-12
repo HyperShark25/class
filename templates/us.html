@@ -1,23 +1,20 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Update</title>
+	<title>Update Subject</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
 	<fieldset>
-		<legend><strong><em>Update Student {{up.name}}</em></strong></legend>
+		<legend><strong><em>Update Subject {{up.name}}</em></strong></legend>
 			<form method="post">
 				{% csrf_token %}
 				<div>
 					<label>Name: <input type="text" name="Name"></label>
 				</div>
 				<div>
-					<label>Age: <input type="number" name="Age" min=15 max=35></label>
-				</div>
-				<div>
-					<label>Address: <input type="text" name="Address"></label>
+					<label>Description: <input type="text" name="Description"></label>
 				</div>
 				<div>
 					<button type="submit">Submit</button>

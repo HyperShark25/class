@@ -3,6 +3,7 @@ from django.contrib.auth import get_user_model
 from django.contrib import messages
 from django.urls import reverse
 from django.contrib.auth.models import auth
+from django.contrib.auth.decorators import login_required
 
 UM = get_user_model()
 
@@ -69,6 +70,7 @@ def logout(request):
     return redirect("/")
 
 
+@login_required
 def detail(request, pk):
     item = UM.objects.get(id=pk)
     return render(request, "detail.html", {"item": item})

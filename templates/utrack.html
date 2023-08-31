@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Update Track</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+	<fieldset>
+		<legend><strong><em>Update Track {{up.track}}</em></strong></legend>
+			<form method="post">
+				{% csrf_token %}
+				<div>
+					<label>Track Name: <input type="text" name="Track" required></label>
+				</div>
+				<div>
+					<button type="submit">Submit</button>
+				</div>
+			</form>
+	</fieldset>
+	<a href="{% url 'table' %}">Table Content</a>
+</body>
+</html>

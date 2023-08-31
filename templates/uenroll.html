@@ -38,6 +38,15 @@
 					</label>
 				</div>
 				<div>
+					<label>Track:
+						<select name="Track" multiple>
+						{% for track in tracks %}
+							<option value="{{track.id}}">{{track.name}}</option>
+						{% endfor %}
+						</select>
+					</label>
+				</div>
+				<div>
 					<button type="submit">Submit</button>
 				</div>
 			</form>

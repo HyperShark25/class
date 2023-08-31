@@ -62,7 +62,7 @@
 		</tbody>
 		{% endfor %}
 	</table>
-		<form action="{% url 'sfunt' %}" method="post">
+	<form action="{% url 'sfunt' %}" method="post">
 		{% csrf_token %}
 		<label>Search: <input type="text" name="TName" placeholder="Search for Teacher"></label>
 		<input type="submit" value="Search">
@@ -121,6 +121,27 @@
 		{% endfor %}
 	</table>
 	<div class="student">
+		<a href="{% url 'track' %}">Create a new Track System</a>
+	</div>
+	<table>
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>Track</th>
+			</tr>
+		</thead>
+		{% for za in context.track %}
+		<tbody>
+			<tr>
+				<td>{{za.id}}</td>
+				<td>{{za.track}}</td>
+				<td><a href="{% url 'utrack' pk=za.id %}">Edit</a></td>
+				<td><a href="{% url 'rtrack' pk=za.id %}">Remove</a></td>
+			</tr>
+		</tbody>
+		{% endfor %}
+	</table>
+	<div class="student">
 		<a href="{% url 'enroll' %}">Create an Enrollment data record</a>
 	</div>
 	<table>
@@ -130,6 +151,7 @@
 				<th>Subject</th>
 				<th>Teacher<t/h>
 				<th>Student</th>
+				<th>Track</th>
 			</tr>
 		</thead>
 		{% for j in context.enroll %}
@@ -149,6 +171,11 @@
 				<td>
 				{% for student in j.students %}
 					{{student.name}}</br>
+				{% endfor %}
+				</td>
+				<td>
+				{% for track in j.tracks %}
+					{{track.name}}</br>
 				{% endfor %}
 				</td>
 				<td><a href="{% url 'uenroll' pk=j.id %}">Edit</a></td>

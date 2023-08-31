@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import get_user_model
 from django.contrib import messages
 from django.urls import reverse
@@ -72,5 +72,5 @@ def logout(request):
 
 @login_required
 def detail(request, pk):
-    item = UM.objects.get(id=pk)
+    item = get_object_or_404(UM, pk=pk)
     return render(request, "detail.html", {"item": item})

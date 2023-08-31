@@ -29,10 +29,19 @@ class Teacher(models.Model):
 
 
 
+class Track(models.Model):
+    track = models.CharField(max_length=256)
+    
+    def __str__(self):
+        return self.track
+
+
+
 class Enrollment(models.Model):
     subject = models.ManyToManyField(Subject)
     student = models.ManyToManyField(Student)
     teacher = models.ManyToManyField(Teacher)
+    track = models.ManyToManyField(Track, blank=True)
     
     def __str__(self):
         return str(self.teacher)

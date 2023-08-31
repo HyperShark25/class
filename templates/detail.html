@@ -12,7 +12,7 @@
 		{% if user.is_admin %}
 			<p>Status: Teacher</p>
 			<a href="{% url 'create' %}">Register Student</a>
-			<a href="{% url 'table' %}">Check your students</a>
+			<a href="{% url 'table' %}">Check students records</a>
 		{% else %}
 			<p>Status: Student</p>
 		{% endif %}

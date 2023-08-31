@@ -1,0 +1,51 @@
+Table:
+
+	Subject
+	
+	Student
+	
+	Teacher
+	
+	Track
+	
+	Enrollment For Students(student + subject + teacher)
+	
+	Enrollment For Teachers(teacher + track)
+	
+	Enrollment For Students(student + track + teacher)
+	
+
+class Track(models.Model):
+    track = models.CharField(max_length=256)
+    subject = models.ManyToManyField(Subject)
+    
+    def __str__(self):
+        return self.track
+
+
+class Enrollment_Student(models.Model):
+    student = models.ManyToManyField(Student)
+    subject = models.ManyToManyField(Subject)
+    teacher = models.ManyToManyField(Teacher)
+    
+    def __str__(self):
+        return str(self.teacher)
+
+
+
+class Enrollment_Student_Track(models.Model):
+    student = models.ManyToManyField(Student)
+    track = models.ManyToManyField(Track)
+    teacher = models.ManyToManyField(Teacher)
+    
+    def __str__(self):
+        return str(self.student)
+
+
+
+class Enrollment_Teacher(models.Model):
+    teacher = models.ManyToManyField(Teacher)
+    track = models.ManyToManyField(Track)
+    
+    def __str__(self):
+        return str(self.teacher)
